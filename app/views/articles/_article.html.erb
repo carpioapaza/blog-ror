@@ -1,0 +1,16 @@
+<div class="col-md-4 mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= article.title %></h5>
+      <p class="card-text"><%= truncate(article.content, length: 50) %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Ver", article_path(article), class: "btn btn-primary btn-sm" %>
+      <% if signed_in? %>
+        <%= link_to "Editar", edit_article_path(article), class: "btn btn-secondary btn-sm" %>
+
+        <%= link_to "Eliminar", article_path(article), method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn btn-danger btn-sm", remote: true %>
+      <% end %>
+    </div>
+  </div>
+</div>

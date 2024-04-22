@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with(model: @article) do |form| %>
+        <div class="mb-3">
+          <%= form.label :title, "Título", class: "form-label" %>
+          <%= form.text_field :title, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :content, "Contenido", class: "form-label" %>
+          <%= form.text_area :content, class: "form-control", rows: 5, required: true %>
+        </div>
+
+        <%= form.submit class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
