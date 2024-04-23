@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! , only: [:edit, :destroy]
+  before_action :authenticate_user! , only: [:edit, :destroy, :new]
 
   def show
   end
@@ -33,11 +33,12 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
   def from_author
-    @user = User.find(params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+      if @user.nil?
+        flash[:error] = "Usuario no encontrado"
+        redirect_to root_path
+    end
   end
-  
-
-
   private
   def set_article
     @article = Article.find(params[:id])
